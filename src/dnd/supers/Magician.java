@@ -8,11 +8,6 @@ public final class Magician extends Player {
 
     public Magician(Usable[] items) {
         super(items);
-        setHealth(10);
-        setAttack(20);
-        setDefense(0);
-        setMaxHealth(10);
-        setIntelligence(20);
     }
 
     @Override

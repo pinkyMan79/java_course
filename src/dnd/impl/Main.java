@@ -25,11 +25,11 @@ public class Main {
         g.initMap();
         EnemyService es = new EnemyService(
                 new Enemy[]{
-                        new Enemy(5, 5, 1),
-                        new Enemy(5, 5, 1),
-                        new Enemy(15, 15, 3),
-                        new Enemy(15, 15, 3),
-                        new Enemy(30, 30, 6),
+                        new Enemy(10, 20, 2),
+                        new Enemy(15, 20, 2),
+                        new Enemy(45, 50, 6),
+                        new Enemy(50, 50, 6),
+                        new Enemy(100, 100, 10),
                 }
         );
         Player p = new Barbarian(ItemRandomisation.initItems(1 + (int) (Math.random() * 3)));

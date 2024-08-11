@@ -1,18 +1,12 @@
 package dnd.supers;
 
 import dnd.supers.action.ActionType;
-import dnd.supers.contracts.Damageable;
 import dnd.supers.item.Usable;
 
-public final class Barbarian extends Player{
+public final class Barbarian extends Player {
 
     public Barbarian(Usable[] items) {
         super(items);
-        setHealth(20);
-        setAttack(10);
-        setDefense(10);
-        setMaxHealth(20);
-        setIntelligence(0);
     }
 
     @Override
@@ -22,7 +16,9 @@ public final class Barbarian extends Player{
 
     public void rage() {
         setAttack(getAttack() * 2);
-        setDefense(0);
+        setHealth(getHealth() * 2);
+        setSpeed(getSpeed() * 2);
+        setDefense(getDefense() / 2);
+        setIntelligence(getIntelligence() / 2);
     }
-
 }

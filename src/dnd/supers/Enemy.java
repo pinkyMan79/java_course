@@ -2,12 +2,12 @@ package dnd.supers;
 
 public class Enemy {
 
-    private int health; //enemy's health points
-    private int maxHealth; //enemy's max health points
-    private int attack; //enemy's attack points
+    private int health; //player's health points
+    private int maxHealth; //player's max health points
+    private int attack; //player's attack points
 
-    private int x = 1 + (int)(Math.random() * 29); //enemy's x position
-    private int y = 1 + (int)(Math.random() * 29); //enemy's x position
+    private int x = 1 + (int)(Math.random() * 29); //player's x position
+    private int y = 1 + (int)(Math.random() * 29); //player's x position
 
 
     public Enemy(int health, int maxHealth, int attack) {

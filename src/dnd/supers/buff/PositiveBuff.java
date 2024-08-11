@@ -1,5 +1,7 @@
 package dnd.supers.buff;
 
+import dnd.supers.Player;
+
 public enum PositiveBuff {
     HEALTH("Healing", "Up hp on 10%"),
     MANA("Mana Regeneration", "Up mana on 10%"),
@@ -24,5 +26,25 @@ public enum PositiveBuff {
 
     public String getDESCRIPTION() {
         return DESCRIPTION;
+    }
+
+    public void apply(Player player) {
+        switch (this) {
+            case HEALTH:
+                player.increaseHealth(player.getHealth() * 1.10);
+                break;
+            case MANA:
+                player.increasemaxHealth(player.getMaxHealth() * 1.10);
+                break;
+            case STRENGTH:
+                player.increaseAttack(player.getAttack() * 1.10);
+                break;
+            case DEXTERITY:
+                player.increaseDefense(player.getDefense() * 1.10);
+                break;
+            case CONSTITUTION:
+                player.increasespeed(player.getSpeed() * 1.10);
+                break;
+        }
     }
 }

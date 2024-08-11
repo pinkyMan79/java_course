@@ -2,17 +2,14 @@ package dnd.supers.engine;
 
 import dnd.supers.Enemy;
 import dnd.supers.Player;
+import dnd.supers.buff.PositiveBuff;
+import dnd.supers.buff.NegativeBuff;
 import dnd.supers.generated.RandomChest;
 
 public class Graphics {
 
-    // enemy - E, position = [x][y]
-    // random chest - C, position = [x][y]
-    // player - @, position = [x][y]
-    // wall - |, position = [x][y]
-    // floor = ., position = [x][y]
-
     private final char[][] map = new char[30][30];
+    private final Tick tick = new Tick(); // Creating Tick example
 
     public void render(Player player, Enemy[] enemies, RandomChest randomChest) {
         initMap();
@@ -21,6 +18,16 @@ public class Graphics {
         for (Enemy enemy : enemies) {
             map[enemy.getX()][enemy.getY()] = 'E';
         }
+    }
+
+    public void applyPositiveBuff(Player player, PositiveBuff buff) {
+        buff.apply(player);
+        tick.increment();
+    }
+
+    public void applyNegativeBuff(Player player, NegativeBuff debuff) {
+        debuff.apply(player);
+        tick.increment();
     }
 
     public void initMap() {
@@ -37,4 +44,20 @@ public class Graphics {
         return map;
     }
 
+    public int getTickCount() {
+        return tick.getCount(); // Get tick iterations
+    }
+
+    // Iteration counter
+    public static class Tick {
+        private int count = 0;
+
+        public void increment() {
+            count++;
+        }
+
+        public int getCount() {
+            return count;
+        }
+    }
 }

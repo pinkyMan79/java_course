@@ -8,11 +8,10 @@ public final class Archer extends Player {
 
     public Archer(Usable[] items) {
         super(items);
-        setHealth(15);
+        setHealth(75);
         setAttack(10);
-        setDefense(5);
-        setMaxHealth(15);
-        setIntelligence(5);
+        setDefense(30);
+        setMaxHealth(75);
     }
 
     @Override
@@ -22,11 +21,5 @@ public final class Archer extends Player {
 
     public void aim() {
         setAttack(getAttack() * 2);
-        setDefense(10);
     }
-
-    public void Shoot(){
-
-    }
-
 }
