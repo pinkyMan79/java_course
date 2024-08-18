@@ -2,6 +2,7 @@ package dnd.impl;
 
 import dnd.supers.Barbarian;
 import dnd.supers.Enemy;
+import dnd.supers.Magician;
 import dnd.supers.Player;
 import dnd.supers.engine.Graphics;
 import dnd.supers.item.Armor;
@@ -9,6 +10,7 @@ import dnd.supers.item.Potion;
 import dnd.supers.item.Usable;
 import dnd.supers.service.EnemyService;
 import dnd.supers.service.PlayerService;
+import dnd.supers.service.ShootService;
 import dnd.supers.service.util.Directions;
 import dnd.util.ItemRandomisation;
 
@@ -20,7 +22,7 @@ public class Main {
     //read input stream from console
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Graphics g = new Graphics();
         g.initMap();
         EnemyService es = new EnemyService(
@@ -32,8 +34,9 @@ public class Main {
                         new Enemy(30, 30, 6),
                 }
         );
-        Player p = new Barbarian(ItemRandomisation.initItems(1 + (int) (Math.random() * 3)));
-        PlayerService service = new PlayerService(p, g, es);
+        Player p = new Magician(ItemRandomisation.initItems(1 + (int) (Math.random() * 3)));
+        ShootService shootService = new ShootService(g);
+        PlayerService service = new PlayerService(p, g, es, shootService);
         out(g.getMap());
         while (true) {
             switch (sc.nextLine()) {
@@ -49,6 +52,8 @@ public class Main {
                 case "d":
                     service.move(Directions.RIGHT);
                     break;
+                case "shoot":
+                    service.getShootService().doShoot(p);
             }
             out(g.getMap());
         }

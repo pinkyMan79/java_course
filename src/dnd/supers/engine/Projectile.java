@@ -7,13 +7,19 @@ import dnd.supers.service.util.Directions;
 import java.util.Scanner;
 
 // По идее, должен быть абстрактным, чтобы потом от него наследовать разные типы снарядов
-public class Projectile /*implements Movable*/ {
-    private Player player; // нужен или не нужен конструктор?
-    int distance;
-    int damage;
+public final class Projectile /*implements Movable*/ {
+    private final Player player; // нужен или не нужен конструктор?
+    private final int distance = 5;
+    private final int damage = 5;
     // по идее, берёт координаты игрока, от которого летит
-    private int x = player.getX();
-    private int y = player.getY();
+    private int x;
+    private int y;
+
+    public Projectile(Player player) {
+        this.player = player;
+        x = player.getX();
+        y = player.getY();
+    }
 
     public int getX() {
         return x;
@@ -35,16 +41,12 @@ public class Projectile /*implements Movable*/ {
         return distance;
     }
 
-    public void setDistance(int distance){
-        this.distance = distance;
-    }
-
     public int getDamage(){
         return damage;
     }
 
-    public void setDamage(int damage){
-        this.damage = damage;
+    public Player getPlayer() {
+        return player;
     }
 
 //    @Override

@@ -9,15 +9,17 @@ public class PlayerService implements Movable {
     private final Player player;
     private final Graphics graphics;
     private final EnemyService enemyService;
+    private final ShootService shootService;
     private final RandomChest[] chests = new RandomChest[]{
             new RandomChest(),
             new RandomChest(),
     };
 
-    public PlayerService(Player player, Graphics graphics, EnemyService enemyService) {
+    public PlayerService(Player player, Graphics graphics, EnemyService enemyService, ShootService shootService) {
         this.player = player;
         this.graphics = graphics;
         this.enemyService = enemyService;
+        this.shootService = shootService;
     }
 
     @Override
@@ -50,5 +52,9 @@ public class PlayerService implements Movable {
 
     public EnemyService getEnemyService() {
         return enemyService;
+    }
+
+    public ShootService getShootService() {
+        return shootService;
     }
 }

@@ -23,6 +23,16 @@ public class Graphics {
         }
     }
 
+    public void render(Player player, Enemy[] enemies, RandomChest randomChest, Projectile projectile) {
+        initMap();
+        map[player.getY()][player.getX()] = '@';
+        map[randomChest.getX()][randomChest.getY()] = 'C';
+        for (Enemy enemy : enemies) {
+            map[enemy.getX()][enemy.getY()] = 'E';
+        }
+        map[projectile.getX()][projectile.getY()] = '+';
+    }
+
     public void initMap() {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {

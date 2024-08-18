@@ -2,7 +2,6 @@ package dnd.supers;
 
 import dnd.supers.action.ActionType;
 import dnd.supers.item.Usable;
-import sun.security.pkcs11.P11Util;
 
 public final class Archer extends Player {
 
