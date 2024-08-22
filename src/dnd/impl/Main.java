@@ -5,6 +5,7 @@ import dnd.supers.Enemy;
 import dnd.supers.Magician;
 import dnd.supers.Player;
 import dnd.supers.engine.Graphics;
+import dnd.supers.generated.RandomChest;
 import dnd.supers.item.Armor;
 import dnd.supers.item.Potion;
 import dnd.supers.item.Usable;
@@ -35,11 +36,19 @@ public class Main {
                 }
         );
         Player p = new Magician(ItemRandomisation.initItems(1 + (int) (Math.random() * 3)));
-        ShootService shootService = new ShootService(g);
+        ShootService shootService = new ShootService();
         PlayerService service = new PlayerService(p, g, es, shootService);
+        RandomChest randomChest = new RandomChest();
         out(g.getMap());
         while (true) {
-            switch (sc.nextLine()) {
+            String input = sc.nextLine();
+            if (input.equals("exit")) {
+                break; // Выход из цикла и завершение игры
+            }
+
+            boolean validCommand = true;
+
+            switch (input) {
                 case "w":
                     service.move(Directions.UP);
                     break;
@@ -52,14 +61,35 @@ public class Main {
                 case "d":
                     service.move(Directions.RIGHT);
                     break;
-                case "shoot":
-                    service.getShootService().doShoot(p);
+                case "shoot-l":
+                    shootService.doShoot(p, 'l', g, es.getEnemy(), randomChest);
+                    break;
+                case "shoot-r":
+                    shootService.doShoot(p, 'r', g, es.getEnemy(), randomChest);
+                    break;
+                case "shoot-u":
+                    shootService.doShoot(p, 'u', g, es.getEnemy(), randomChest);
+                    break;
+                case "shoot-d":
+                    shootService.doShoot(p, 'd', g, es.getEnemy(), randomChest);
+                    break;
+                case "history":
+                    service.displayActionHistory();
+                case "Shoothistory":
+                    //shootService.displayShootHistory();
+                default:
+                    System.out.println("Unknown command: " + input);
+                    validCommand = false;
             }
             out(g.getMap());
+
+
+            // Добавление задержки
+            Thread.sleep(100);
         }
     }
 
-    public static void out(char[][] chars) {
+        public static void out(char[][] chars) {
         for (char[] chars1 : chars) {
             for (char aChars1 : chars1) {
                 System.out.print(aChars1 + " ");

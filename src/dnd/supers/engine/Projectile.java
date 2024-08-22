@@ -37,54 +37,15 @@ public final class Projectile /*implements Movable*/ {
         this.y = y;
     }
 
-    public int getDistance(){
+    public int getDistance() {
         return distance;
     }
 
-    public int getDamage(){
+    public int getDamage() {
         return damage;
     }
 
     public Player getPlayer() {
         return player;
     }
-
-//    @Override
-//    public void move(Directions directions) {
-//        final Projectile projectile;
-//        Scanner sc = new Scanner(System.in);
-//        Directions direction = null;
-//        // определяем направление полёта снаряда
-//        switch (sc.nextLine()) {
-//            case "w":
-//                direction = Directions.UP;
-//                break;
-//            case "a":
-//                direction = Directions.LEFT;
-//                break;
-//            case "s":
-//                direction = Directions.DOWN;
-//                break;
-//            case "d":
-//                direction = Directions.RIGHT;
-//                break;
-//            default:
-//                System.out.println("Incorrect input");
-//                break;
-//        }
-//        switch (direction) {
-//            case LEFT:
-//                projectile.setX(projectile.getX() - 1);
-//                break;
-//            case RIGHT:
-//                projectile.setX(projectile.getX() + 1);
-//                break;
-//            case UP:
-//                projectile.setY(projectile.getY() - 1);
-//                break;
-//            case DOWN:
-//                projectile.setY(projectile.getY() + 1);
-//                break;
-//        }
-//    }
 }

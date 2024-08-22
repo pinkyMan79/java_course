@@ -5,6 +5,8 @@ import dnd.supers.engine.Graphics;
 import dnd.supers.generated.RandomChest;
 import dnd.supers.service.util.Directions;
 
+import java.util.LinkedList;
+
 public class PlayerService implements Movable {
     private final Player player;
     private final Graphics graphics;
@@ -14,6 +16,7 @@ public class PlayerService implements Movable {
             new RandomChest(),
             new RandomChest(),
     };
+    private LinkedList<String> actionHistory = new LinkedList<>();
 
     public PlayerService(Player player, Graphics graphics, EnemyService enemyService, ShootService shootService) {
         this.player = player;
@@ -38,8 +41,18 @@ public class PlayerService implements Movable {
                 player.setY(player.getY() + 1);
                 break;
         }
+        actionHistory.add("Moved " + directions);
         enemyService.moveEnemies();
         graphics.render(player, enemyService.getEnemy(), chests[0]);
+    }
+
+
+
+    public void displayActionHistory() {
+        System.out.println("Player Action History:");
+        for (String action : actionHistory) {
+            System.out.println(action);
+        }
     }
 
     public Player getPlayer() {
@@ -56,5 +69,9 @@ public class PlayerService implements Movable {
 
     public ShootService getShootService() {
         return shootService;
+    }
+
+    public void doShoot(char direction) {
+        shootService.doShoot(player, direction, graphics, enemyService.getEnemy(),new RandomChest());
     }
 }
